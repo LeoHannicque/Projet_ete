@@ -1,0 +1,64 @@
+Journal de bord :
+
+SEMAINE 1 : 
+
+Mes étapes sont les suivantes : 
+
+1) Choix des features
+
+Le choix des features est une étape très importante dans le clustering : il faut que chaque feature soit assez informatif. En effet, les algorithmes de clustering se basent principalement sur la notion de distance, avoir des features inutiles biaiserait les distances.
+
+Deux solutions sont envisageable : la première est de trouver un algorithme qui extrait automatiquement les features les plus important, la seconde est d'écrire tous les features possibles et de faire une analyse de composantes principales (ACP) afin de déterminer quels sont les features les plus infomatifs.
+
+2) Choix de l'algorithme
+
+En clustering, il existe deux grandes classes d'algorithmes :
+
+- Hierarchical algorithm : 
+Produit une hiérarchie (dendrogramme) de clusters qui peuvent être analysés et visualisés
+Démarre avec des clusters individuels, à chaque étape, fusionne la paire de clusters la plus proche
+jusqu'à ce qu'il ne reste plus qu'un seul groupe (ou k groupes).
+
+L'algorithme le plus connu est l'agglomerative clustering algorithm
+Complexité : O(n³).
+
+
+- Representative-based algorithm : 
+Les données d'entrée sont : un dataset de N instances, un nombre de clusters k.
+Les algorithmes de cette classe génèrent une partition C en k clusters {C1,...,Ck} en ce basant sur la notion de distances et de centroïdes.
+
+L'algorithme le plus réputé de cette classe est le k-means algorithm.
+Complexité : O(kN).
+
+
+- Density-base algorithm : 
+Ces algorithme recherchent le mode (c'est-à-dire le point de
+densité la plus élevée) d'une distribution de données.
+
+L'algorithme le plus réputé est le Meanshift clustering algorithm.
+Complexité : O(n²).
+
+
+Quelle classe d'algorithme choisir ?
+La dernière classe d'algorithme est assez spécifique, elle est utilisée principalement pour les structures de données non convexes.
+Je vais donc d'abord me concentrer sur les deux premières classes et si mes résultats sont mauvais, je m'orienterai vers cette troisième classe.
+
+Concernant les deux premières classes, l'algorithme agglomerative clustering est facile à mettre en place mais assez couteux en calculs, il est donc idéal si le nombres d'instances n'est pas trop élevé , l'algorithme k-means est quant à lui beaucoup moins coûteux mais légèrement plus complexe à mettre en place (l'initialisation est délicate pour cet algorithme).
+
+Dans les deux cas, le problème principal est le même : déterminer le nombre de clusters k que l'on veut. Pour cela il faut faire une analyse de "coudes et genoux" dans le graphique de la SSE en fonction du nombre de clusters k.
+
+3) Evaluation de l'algorithme
+
+Pour determiner si l'algorithme choisit est adapté à notre contexte ou bien pour determiner quels sont les meilleurs paramètres, il faut avoir des critères d'évaluation.
+Les deux principales mesures sont les mesures de cohésion et les mesures de séparation.
+
+La cohésion mesure l'étroitesse des liens entre les objets d'un groupe.
+La séparation mesure le degré de séparation d'un cluster par rapport aux autres clusters.
+
+
+OBJECTIFS SEMAINE 2 :
+
+1) lister les features possibles et sélectionner les plus utiles.
+2) me renseigner sur la structure des données pour voir quel algorithme utiliser
+
+
