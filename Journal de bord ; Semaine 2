@@ -1,0 +1,16 @@
+Journal de bord ; Semaine 2
+
+L'objectif principal de cette semaine était de se documenter pour savoir quels features sont les plus interessants pour notre projet.
+Le problème majeur étant que le nombre de fichiers audio est très important, il faut donc sélectionner le minimum de features tout en selectionnant les plus informatifs.
+
+En clustering audio, les features les plus connus sont : Mel Frequency Cepstral Coefficients (mfcc), Filterbank Energies, Spectral Subband Centroids.
+
+Je pense d'abord me concentrer sur les MFCCs qui sont les plus informatifs.
+En effet, le principal point à comprendre concernant la parole est que les sons générés par un être humain sont filtrés par la forme du tractus vocal, y compris la langue, les dents, etc. Cette forme détermine le son qui sort. Si nous pouvons déterminer la forme avec précision, cela devrait nous donner une représentation exacte du phonème produit. La forme du conduit vocal se manifeste dans l'enveloppe du spectre de puissance à court terme, et le travail des MFCC est de représenter précisément cette enveloppe.
+
+Le travail de cette semaine est donc de réussir à extraire ces coefficients.
+J'ai essayé durant plusieurs jour d'implémenter par moi même la mesure de ces coefficients mais je me suis souvent retrouvé à simplement recopier des parties de code qui étaient trop compliquées à trouver par moi-même. J'ai donc finalement décidé d'utiliser la librairie python_speech_features sur python.
+
+L'objectif de la semaine 3 est de choisir l'algorithme de clustering adapté à notre problème et de proposer une première version de clusters.
+Ensuite, en semaine 4 l'objectif sera d'évaluer la performance de l'algorithme et de proposer ou non une alternative en fonction des résultats.
+
