@@ -1,0 +1,13 @@
+L'objectif principal de cette semaine est de proposer un premier algorithme de clustering.
+
+Jusqu'ici, nous avons trouvé nos features : les MFCC.
+Cependant, tout algorithme de clustering nécessite une bonne définition de distance afin de pouvoir comparer les différents fichiers audio à partir de leurs features.
+
+Ici, la notion de distance n'est pas évidente.
+Les coefficients MFCC se représentent sous la forme d'une d’une matrice nxp. (n coefficients sur p fenêtres audio). Chaque mot a un nombre différent de fenêtres audio et une même personne ne peut prononcer deux fois le même mot sur la même durée, le même rythme, la même intensité, donc chaque signal sera différent.
+
+Le fait que les signaux des différents mots aient des durées différentes est le problème principal pour le calcul de distances. C'est pour cela que l'on va utiliser une méthode de comparaison dynamique DTW (Dynamic Time Wrapping).
+
+Ma tâche de la semaine s'est donc résumée à créer une fonction calculant cette distance sur python.
+
+ 
