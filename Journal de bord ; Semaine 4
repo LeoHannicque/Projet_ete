@@ -1,0 +1,22 @@
+Cette semaine je commence à tester quelques algorithmes de clustering.
+Cependant, les premiers résultats ont été très peu concluants.
+Le problème venait probablement d'un des deux éléments suivants : le choix des features ou bien le calcul des distances.
+
+J'ai très vite éliminé le calcul des distances puisqu'il s'agit d'un processus bien établit qui a prouvé son efficacité dans de nombreux algorithme.
+Je me suis donc penché sur mon vecteur de features puisqu'il s'avère que l'interprétation des coefficients MFCC est assez complexe.
+Comme je l'ai expliqué les semaines précédentes, les coefficients MFCC caractérisent l'enveloppe du signal. Cependant, je n'ai pas pris en compte le fait que certains coefficients caractérisent la forme globale de l'enleveloppe du signal et donc le mot prononcé, et d'autres coefficient caractérisent les détails de l'enveloppe du signal et donc la voix du locuteur.
+En prenant trop de coefficients MFCC j'ai donc biaisé ma notion de distance qui prenait en compte non seulement le mot prononcé mais également le timbre de voix du locuteur. 
+
+Je sais que les coefficient vont du plus global au plus détaillant. Ne sachant pas combien de coefficients prendre en compte afin de négliger les détails de la voix du locuteur et ainsi ne garder que les informations sur le mot prononcé, j'ai appliqué une méthode empirique personnel puisque je n'ai rien trouvé de concluant dans différents cours sur les signaux que j'ai consulté.
+
+La méthode que j'ai appliqué est la suivante : 
+- je prends trois enregistrement différents : dans l'enregistrement 1 le locuteur prononce le mot A, dans l'enregistrement 2 un locuteur différent prononce le mot A, dans l'enregistrement 3 un locuteur encore différent des deux autres prononce le mot B différent de A.
+
+- je calcule les distances entre les enregistrements en commençant à un coefficient MFCC puis en incrémentant de 1 à chaque tour.
+
+- je choisis le nombre de coefficients qui donne les résultats les plus convaincants, c'est à dire un nombre de coefficients pour lequel :
+       - d12 est faible (les mots prononcés sont similaires)
+       - d13 et d23 sont élevés (les mots prononcés sont différents)
+       - d13 et d23 sont proches (ces distances correspondent à la comparaison des mêmes mots prononcés par des locuteurs différents, il faut donc qu'elles soient proches, sinon c'est que la distance prend en compte les détails de la voix des locuteurs)
+
+Grâce à cette méthode j'ai déterminé que seuls les 6 premiers coefficients MFCC étaient nécessaires dans notre situation.
