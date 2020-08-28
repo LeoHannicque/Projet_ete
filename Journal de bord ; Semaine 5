@@ -1,0 +1,16 @@
+Les semaines précédentes je me suis énormément documenté afin de ne pas foncer tête baissée ne pas accumuler des erreurs de compréhension.
+Cette semaine j'ai mis en place l'algorithme de clustering.
+
+Etant donné que nous ne connaissons pas à l'avance le nombre de clusters, j'ai choisi d'utiliser l'algorithme DBSCAN puisqu'il determine seul le nombre de cluster.
+L'idée derrière cet algorithme est la suivante :  dans cet algorithme, 2 paramètres doivent être choisis : epsilon et MinPoints. Epsilon quantifie une mesure du voisinage (deux points sont voisins quand ils sont à une distance plus petite que epsilon l’un de l’autre). DBSCAN repose sur le concept de densité : un cluster est une zone de l’espace où la densité d’observations est importante. En sortie, l’algorithme génère autant de clusters que de zones de l’espace de forte densité. Les points isolés sont considérés comme des outliers (valeurs aberrantes).
+
+J'ai donc toute cette semaine cherché à mettre la théorie en pratique et j'y suis parvenu avec succès. Mon algorithme DBSCAN fonctionne mais est très coûteux en calculs, je n'arrive donc pas à le faire tourner sur le dataset complet. 
+A mon avis, si on veut des résultats sur le dataset complet, il faudrait plutot un algorithme sur lequel on prédéfinit le nombre de clusters comme le k-mean. J'ai choisi de garder mon algorithme malgré tout puisque prédéfinir le nombre de clusters me parait être "de la triche" pour notre problème.
+
+J'avoue être déçu du résultat puisque l'algorithme ne converge pas du tout vers la solution escomptée.
+Je pensais avoir fait tout le nécessaire pour que cela fonctionne : en effet d'après les nombreux articles que j'ai lu les coefficients MFCC sont les plus adaptés au problème, ma fonction d'extraction de ces coefficients est à priori bonne, et mon algorithme de clustering est très efficace en théorie.
+Je pense que le problème vient du calcul des distances. En effet, je me suis rendu compte que mon calcul de distance n'était peut être pas adapté : les enregistrements sencés être "proches" ont des distances qui paraissent relativement élevées et trop proches des distances des enregistrements sencés être "éloignés". Il semble donc qu'utiliser la distance DTW n'est pas correct dans le cas présent.
+Toutefois je ne trouve aucun autre calcul de distance à partir de ces coefficients, le problème majeur étant que pour chaque signal il y a 13 coefficients par frame, et que tous les signaux ne disposent pas du même nombre de frames.
+
+Pour résoudre le problème il faudrait soit trouver un calcul de distance pertinent, soit changer de features. Cependant malgré mes recherches je ne trouve pas comment mettre en place ces potentielles solutions.
+
